@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebhookSheets.DataTransfer.PlanilhaFinanceiro.Requests;
+using WebhookSheets.Service.Mensageria.RabbitMqService;
 
 namespace WebhookSheets.Controller.PlanilhaFinanceiro
 {
@@ -7,8 +8,11 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
     [ApiController]
     public class PlanilhaFinanceiroController : ControllerBase
     {
-        public PlanilhaFinanceiroController()
+        private readonly IRabbitMqService _rabbit;
+
+        public PlanilhaFinanceiroController(IRabbitMqService rabbit)
         {
+            _rabbit = rabbit;
         }
 
         [HttpPost]
@@ -22,6 +26,8 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
                 Console.WriteLine($"Valores: {i}");
 
             }
+
+            _rabbit.SendMessage(request, "planilha-financeiro");
 
             return Ok();
         }

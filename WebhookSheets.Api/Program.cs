@@ -1,3 +1,5 @@
+using WebhookSheets.Service.Mensageria.RabbitMqService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,9 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
+
+builder.Services.AddSingleton<IRabbitMqService,RabbitMqService>();
+
 
 var app = builder.Build();
 
