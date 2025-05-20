@@ -11,20 +11,20 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["WebhookSheets/WebhookSheets.csproj", "WebhookSheets/"]
+COPY ["WebhookSheets.Api/WebhookSheets.Api.csproj", "WebhookSheets.Api/"]
 COPY ["WebhookSheets.DataTransfer/WebhookSheets.DataTransfer.csproj", "WebhookSheets.DataTransfer/"]
-RUN dotnet restore "./WebhookSheets/WebhookSheets.csproj"
+RUN dotnet restore "./WebhookSheets.Api/WebhookSheets.Api.csproj"
 COPY . .
-WORKDIR "/src/WebhookSheets"
-RUN dotnet build "./WebhookSheets.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/WebhookSheets.Api"
+RUN dotnet build "./WebhookSheets.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Esta fase é usada para publicar o projeto de serviço a ser copiado para a fase final
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./WebhookSheets.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./WebhookSheets.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Esta fase é usada na produção ou quando executada no VS no modo normal (padrão quando não está usando a configuração de Depuração)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WebhookSheets.dll"]
+ENTRYPOINT ["dotnet", "WebhookSheets.Api.dll"]
