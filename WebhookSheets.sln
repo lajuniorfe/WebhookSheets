@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebhookSheets", "WebhookSheets\WebhookSheets.csproj", "{391C6E84-DFAC-4967-8844-87F7BE9026AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebhookSheets.Api", "WebhookSheets\WebhookSheets.Api.csproj", "{391C6E84-DFAC-4967-8844-87F7BE9026AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebhookSheets.DataTransfer", "WebhookSheets.DataTransfer\WebhookSheets.DataTransfer.csproj", "{61A5A622-C3C4-4E7C-93E8-531AC9CD3529}"
 EndProject
