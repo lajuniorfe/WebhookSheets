@@ -13,7 +13,7 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
         {
             _connectionFactory = new ConnectionFactory()
             {
-                HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq-3dkk.onrender.com",
+                HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq-fly.internal",
                 Port = int.Parse(Environment.GetEnvironmentVariable("RABBITMQ_PORT") ?? "5672"),
                 UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "admin",
                 Password = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? " FinanceiroHoot!23"
