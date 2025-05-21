@@ -21,11 +21,7 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
             Console.WriteLine($"Recebido evento: {request.Evento}");
             Console.WriteLine($"Aba: {request.Sheet}, Linha: {request.Row}");
             Console.WriteLine($"Data/Hora: {request.Time}");
-            foreach (var i in request.Values)
-            {
-                Console.WriteLine($"Valores: {i}");
 
-            }
 
             await _rabbit.SendMessage(request, "planilha-financeiro");
 
