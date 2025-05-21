@@ -7,7 +7,6 @@ app = 'whebhooksheets'
 primary_region = 'gru'
 
 [build]
-  # Se você não tem Dockerfile personalizado, pode tentar usar a build padrão .NET do Fly
   builder = "paketobuildpacks/builder:base"
 
 
