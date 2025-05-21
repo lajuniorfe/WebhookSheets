@@ -16,7 +16,7 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
         }
 
         [HttpPost]
-        public ActionResult ReceberAlteracaoPlanilhaFinanceiro([FromBody] GoogleSheetFinanceiroRequest request)
+        public async Task<ActionResult> ReceberAlteracaoPlanilhaFinanceiro([FromBody] GoogleSheetFinanceiroRequest request)
         {
             Console.WriteLine($"Recebido evento: {request.Evento}");
             Console.WriteLine($"Aba: {request.Sheet}, Linha: {request.Row}");
@@ -27,7 +27,7 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
 
             }
 
-            _rabbit.SendMessage(request, "planilha-financeiro");
+            await _rabbit.SendMessage(request, "planilha-financeiro");
 
             return Ok();
         }

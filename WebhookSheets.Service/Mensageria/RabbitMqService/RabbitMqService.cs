@@ -16,7 +16,7 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
                 HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq-fly.internal",
                 Port = int.Parse(Environment.GetEnvironmentVariable("RABBITMQ_PORT") ?? "5672"),
                 UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "admin",
-                Password = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? " FinanceiroHoot!23"
+                Password = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "FinanceiroHoot!23"
             };
 
         }
