@@ -10,6 +10,8 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
     {
         private readonly ConnectionFactory _connectionFactory;
         private readonly IConfiguration _configuration;
+        private IConnection? _connection;
+        private IChannel? _channel;
 
 
         public RabbitMqService(IConfiguration configuration)
@@ -23,23 +25,38 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
                 UserName = _configuration["RabbitMQ:Username"],
                 Password = _configuration["RabbitMQ:Password"]
             };
-         
+
+        }
+
+        private async Task AbrirConexao()
+        {
+            if (_connection == null || !_connection.IsOpen)
+            {
+                _connection = await _connectionFactory.CreateConnectionAsync();
+            }
+
+            if (_channel == null || !_channel.IsOpen)
+            {
+                _channel = await _connection.CreateChannelAsync();
+            }
         }
 
         public async Task SendMessage(GoogleSheetFinanceiroRequest mensagem, string fila = "planilha-financeiro", CancellationToken cancellation = default)
         {
             try
             {
-                var connection = await _connectionFactory.CreateConnectionAsync();
-                var channel = await connection.CreateChannelAsync();
+               await AbrirConexao();
 
-                await channel.QueueDeclareAsync(queue: fila, durable: true, exclusive: false, autoDelete: false, arguments: null);
+                await _channel.QueueDeclareAsync(queue: fila, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
                 var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(mensagem));
 
-                await channel.BasicPublishAsync(exchange: "", routingKey: fila, body: body, cancellation);
+                await _channel.BasicPublishAsync(exchange: "", routingKey: fila, body: body, cancellation);
 
                 Console.WriteLine($"Mensagem publicada na fila '{fila}'.");
+
+                await Task.Delay(Timeout.Infinite, cancellation);
+
             }
             catch (Exception ex)
             {
