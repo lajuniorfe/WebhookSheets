@@ -54,8 +54,7 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
                 await _channel.BasicPublishAsync(exchange: "", routingKey: fila, body: body, cancellation);
 
                 Console.WriteLine($"Mensagem publicada na fila '{fila}'.");
-
-            }
+                            }
             catch (Exception ex)
             {
                 throw ex;
