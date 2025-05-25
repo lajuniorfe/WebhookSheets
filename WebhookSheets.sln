@@ -9,13 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebhookSheets.Api", "Webhoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebhookSheets.Service", "WebhookSheets.Service\WebhookSheets.Service.csproj", "{2C6AD433-E4AE-4AE3-86AC-D91994705825}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2075409B-081C-4B79-9D9E-AFF135547EEB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{E71E81F7-D8D8-4EDE-89D4-26B4FC57A499}"
-	ProjectSection(SolutionItems) = preProject
-		deploy-fly.yml = deploy-fly.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,9 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E71E81F7-D8D8-4EDE-89D4-26B4FC57A499} = {2075409B-081C-4B79-9D9E-AFF135547EEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C56DB9D-F8F7-4C21-82A9-26FAE8BF9013}
