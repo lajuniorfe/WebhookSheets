@@ -14,7 +14,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Flyctl
-        uses: superfly/flyctl-action@v1
+        uses: superfly/flyctl-actions@v1
+
         with:
           token: ${{ secrets.FLY_API_TOKEN }}
 
