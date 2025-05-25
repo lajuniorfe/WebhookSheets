@@ -13,7 +13,6 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
         private IConnection? _connection;
         private IChannel? _channel;
 
-
         public RabbitMqService(IConfiguration configuration)
         {
             _configuration = configuration;
