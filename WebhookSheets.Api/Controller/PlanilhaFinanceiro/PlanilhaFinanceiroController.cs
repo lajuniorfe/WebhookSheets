@@ -18,14 +18,18 @@ namespace WebhookSheets.Controller.PlanilhaFinanceiro
         [HttpPost]
         public async Task<ActionResult> ReceberAlteracaoPlanilhaFinanceiro([FromBody] GoogleSheetFinanceiroRequest request)
         {
-            Console.WriteLine($"Recebido evento: {request.Evento}");
-            Console.WriteLine($"Aba: {request.Sheet}, Linha: {request.Row}");
-            Console.WriteLine($"Data/Hora: {request.Time}");
+            try
+            {
+                await _rabbit.SendMessage(request, "planilha-financeiro");
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
 
-            await _rabbit.SendMessage(request, "planilha-financeiro");
-
-            return Ok();
         }
     }
 }

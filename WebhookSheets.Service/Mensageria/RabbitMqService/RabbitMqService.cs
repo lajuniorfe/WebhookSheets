@@ -54,9 +54,9 @@ namespace WebhookSheets.Service.Mensageria.RabbitMqService
 
                 Console.WriteLine($"Mensagem publicada na fila '{fila}'.");
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
     }
