@@ -19,14 +19,15 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddSingleton<IRabbitMqService,RabbitMqService>();
+builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAllOrigins");
